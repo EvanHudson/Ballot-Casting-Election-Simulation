@@ -1,0 +1,290 @@
+import random
+class Vote_Object:
+    def __init__(self, voter_id=None, candidate_id=None, position=None, electionType=None):
+        self.voter_id = voter_id
+        self.candidate_id = candidate_id
+        self.position = position
+        self.electionType = electionType
+        if(electionType.isdigit()==False):
+            self.electionType=electionType.lower()
+        self.key1="voter_id"
+        self.key2="candidate_id"
+        self.key3="position"
+        self.key4="election_type"
+    def vote(self):
+        return {
+            self.key1: self.voter_id,
+            self.key2: self.candidate_id,
+            self.key3: self.position,
+            self.key4: self.electionType
+        }
+    def random_good(self):
+        self.candidate_id = random.randint(1, 2)
+    #generate vote object that doesnt pass verification for use in simulated election
+    def random_bad(self):
+        error=random.randint(1, 6)
+       #bad electionType
+        if(error==1):
+            error=random.randint(1,10)
+            if(error==1):
+                self.electionType='Democratic'
+            if(error==2):
+                self.electionType='federation'
+            if(error==3):
+                self.electionType='LOca'
+            if(error==4):
+                self.electionType='dictator'
+
+            if(error==5):
+                self.electionType='technology'
+
+            if(error==6):
+                self.electionType='the beatles'
+            if(error==7):
+                self.electionType='School'
+            if(error==8):
+                self.electionType='b'
+            if(error==9):
+                self.electionType='stat'
+            if(error==10):
+                self.electionType='Security'
+        #wrong keys
+        elif(error==2):
+            error=random.randint(1,10)
+            if(error==1):
+                self.key1='voted'
+            if(error==2):
+                self.key1='vote_id'
+            if(error==3):
+                self.key1='votee_id'
+            if(error==4):
+                self.key2='canidate_id'
+
+            if(error==5):
+                self.key2='candidcamera'
+
+            if(error==6):
+                self.key2='candidate_vote'
+            if(error==7):
+                self.key3='mama'
+            if(error==8):
+                self.key3='positional'
+            if(error==9):
+                self.key4='electal'
+            if(error==10):
+                self.key1='electionType o-'
+        #wrong positions
+        elif(error==3):
+            if(self.electionType.lower()=='federal'):
+                error=random.randint(1,10)
+                if(error==1):
+                    self.position='governor'
+                if(error==2):
+                    self.position='senato'
+                if(error==3):
+                    self.position='representativ'
+                if(error==4):
+                    self.position='assembly member'
+
+                if(error==5):
+                    self.position='attorney general'
+
+                if(error==6):
+                    self.position='secreatry of state'
+                if(error==7):
+                    self.position='mayor'
+                if(error==8):
+                    self.position='commisioner'
+                if(error==9):
+                    self.position='sheriff'
+                if(error==10):
+                    self.position='district attorney'
+            elif(self.electionType.lower()=='state'):
+                error=random.randint(1,10)
+                if(error==1):
+                    self.position='president'
+                if(error==2):
+                    self.position='vice president'
+                if(error==3):
+                    self.position='senate'
+                if(error==4):
+                    self.position='represent'
+
+                if(error==5):
+                    self.position='mayor'
+
+                if(error==6):
+                    self.position='city council member'
+                if(error==7):
+                    self.position='comissioner'
+                if(error==8):
+                    self.position='school board member'
+                if(error==9):
+                    self.position='electal'
+                if(error==10):
+                    self.position='sherrif'
+            elif(self.electionType.lower()=='local'):
+                error=random.randint(1,10)
+                if(error==1):
+                    self.position='president'
+                if(error==2):
+                    self.position='vice president'
+                if(error==3):
+                    self.position='senato'
+                if(error==4):
+                    self.position='representativ'
+                if(error==5):
+                    self.position='governor'
+
+                if(error==6):
+                    self.position='assembly member'
+                if(error==7):
+                    self.position='attorney general'
+                if(error==8):
+                    self.position='secretary of state'
+                if(error==9):
+                    self.position='electal'
+                if(error==10):
+                    self.position='electionType o-'
+            else:
+                self.position='joemama'
+        #wrong candidate id
+        elif(error==4):
+            self.candidate_id=random.randint(11,1000000)
+            
+        #wrong format
+        elif(error==5):
+            error=random.randint(1,8)
+            if(error==1):
+                self.electionType=random.randint(1,100000)
+            if(error==2):
+                self.electionType=-1*random.randint(1,100000)
+            if(error==3):
+                self.position=random.randint(1,100000)
+            if(error==4):
+                self.position=-1*random.randint(1,100000)
+
+            if(error==5):
+                self.candidate_id=-1*random.randint(1,10)
+
+            if(error==6):
+                error=random.randint(1,10)
+                if(error==1):
+                    randomString='two'
+                if(error==2):
+                    randomString='hello'
+                if(error==3):
+                    randomString='a'
+                if(error==4):
+                    randomString='forty'
+
+                if(error==5):
+                    randomString='mama'
+
+                if(error==6):
+                    randomString='Evan'
+                if(error==7):
+                    randomString='was'
+                if(error==8):
+                    randomString='Here'
+                if(error==9):
+                    randomString='and'
+                if(error==10):
+                    randomString='hungry'
+                self.candidate_id=randomString
+            if(error==7):
+                self.voter_id=-1*random.randint(1,10)
+            if(error==8):
+                error=random.randint(1,10)
+                if(error==1):
+                    randomString='two'
+                if(error==2):
+                    randomString='hello'
+                if(error==3):
+                    randomString='a'
+                if(error==4):
+                    randomString='forty'
+
+                if(error==5):
+                    randomString='mama'
+
+                if(error==6):
+                    randomString='Evan'
+                if(error==7):
+                    randomString='was'
+                if(error==8):
+                    randomString='Here'
+                if(error==9):
+                    randomString='and'
+                if(error==10):
+                    randomString='hungry'
+                self.voter_id=randomString
+
+        #repeated voter_id
+        elif(error==6):
+            self.voter_id=self.voter_id-1
+        #setters
+    def setvoter_id(self, vote_id):
+        self.voter_id=vote_id
+    def setcandidate_id(self, candidate_id):
+        self.candidate_id=candidate_id
+    def setposition(self, position):
+        self.position=position
+    def setelection_type(self, election_type):
+        self.electionType=election_type
+        
+        #getters
+    def getvoter_id(self):
+        return  self.voter_id
+    def getcandidate_id(self):
+        return  self.candidate_id
+    def getposition(self):
+        return  self.position
+    def getelection_type(self):
+        return  self.electionType
+
+    #show whats in it
+    def show(self):
+        print (self.voter_id)
+        print (self.candidate_id)
+        print (self.position)
+        print (self.electionType)
+#testing getter and setter
+        """
+vote=Vote_Object(123,1,'president','federal')
+print(vote.vote())
+vote.setvoter_id(124)
+vote.setcandidate_id(12)
+vote.setposition('vice president')
+vote.setelection_type("local")
+print(vote.getvoter_id())
+print(vote.getcandidate_id())
+print(vote.getposition())
+print(vote.getelection_type())
+print(vote.vote())
+"""
+#testing random wrong vote objects
+"""
+vote=Vote_Object(123,1,'president', 'federal')
+vote.show()
+a=vote.vote()
+print (a)
+vote=Vote_Object(123,2,'president', 'federal')
+vote.show()
+a=vote.vote()
+print (a)
+"""
+"""
+vote=Vote_Object(123,2,'president','state')
+for i in range(10):
+    
+    vote.random_bad()
+    a=vote.vote()
+    print(a)
+ """
+"""
+vote=Vote_Object()
+vote.show()
+a=vote.vote()
+print (a)
+"""

@@ -1,0 +1,70 @@
+import tkinter as tk
+from Ballot_Casting_Json import TabulateContext, ElectionRegistry, FederalElectionStrategy, LocalElectionStrategy, StateElectionStrategy
+from Ballot_Casting_Tests import Ballot_Casting_Tests
+from tkinter import simpledialog
+
+
+class BallotGui:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Ballot Casting Verification MVP")
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self.root, text="Choose an option:").pack(pady=10)
+
+        tk.Button(self.root, text="Simulated Election", command=self.simulated_election).pack(pady=5)
+        tk.Button(self.root, text="Manual Vote Object", command=self.manual_vote_object).pack(pady=5)
+        tk.Button(self.root, text="Tests", command=self.tests).pack(pady=5)
+        tk.Button(self.root, text="Exit", command=self.root.destroy).pack(pady=5)
+
+    def simulated_election(self):
+        federal_pos = simpledialog.askstring("Simulated Election", "Federal Position:")
+        federal1_candidate = simpledialog.askstring("Simulated Election", "Federal Candidate 1:")
+        federal2_candidate = simpledialog.askstring("Simulated Election", "Federal Candidate 2:")
+        state_pos = simpledialog.askstring("Simulated Election", "State Position:")
+        state1_candidate = simpledialog.askstring("Simulated Election", "State Candidate 1:")
+        state2_candidate = simpledialog.askstring("Simulated Election", "State Candidate 2:")
+        local_pos = simpledialog.askstring("Simulated Election", "Local Position:")
+        local1_candidate = simpledialog.askstring("Simulated Election", "Local Candidate 1:")
+        local2_candidate = simpledialog.askstring("Simulated Election", "Local Candidate 2:")
+
+        number_voters = simpledialog.askinteger("Simulated Election", "Number of voters:")
+        number_errors = simpledialog.askinteger("Simulated Election", "Errors:")
+
+        print(f'Starting simulated election of {number_voters} voters')
+
+    def manual_vote_object(self):
+        vote_id = simpledialog.askstring("Manual Vote Object", "Vote ID:")
+        candidate_id = simpledialog.askstring("Manual Vote Object", "Candidate ID:")
+        position = simpledialog.askstring("Manual Vote Object", "Position:")
+        election_type = simpledialog.askstring("Manual Vote Object", "Election Type:")
+
+        vote_id=int(vote_id)
+        candidate_id=int(candidate_id)
+        print('Manual Vote Object Verification')
+
+
+        
+        # Call the verify/tabulate functions with the entered data from the user
+        vote_object = {
+            "voter_id": vote_id,
+            "candidate_id": candidate_id,
+            "position": position,
+            "election_type": election_type
+        }
+        self.tabulate_vote(vote_object)
+    def tests(self):
+        print('doing tests')
+        tests=Ballot_Casting_Tests()
+        tests.strategiesTests()
+    def tabulate_vote(self, vote_object):
+        # You can use the classes and functions from Ballot_Casting2.2_Json.py here
+        election_registry = ElectionRegistry()
+        tabulate_context = TabulateContext(election_registry)
+        tabulate_context.tabulate_vote(vote_object)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = BallotGui(root)
+    root.mainloop()
